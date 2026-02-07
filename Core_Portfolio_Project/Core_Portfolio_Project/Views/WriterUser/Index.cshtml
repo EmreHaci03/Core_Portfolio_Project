@@ -1,0 +1,61 @@
+﻿@using EntityLayer.Concrete
+@model List<WriterUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+
+<div class="col-md-6">
+    <div class="p-2">
+        <button type="button" id="btnGetListAll" class="btn btn-outline-success">Verileri Getir</button>
+        <button type="button" id="btnAddUser" class="btn btn-outline-info">Kaydet</button>
+    </div>
+</div>
+
+<h4 class="text-center">Yazar Listesi</h4>
+<div class="p-2" id="listuser">
+    Buraya Veriler Gelecek
+</div>
+
+<div class="col-md-12">
+    <input type="text" class="form-control" id="Name"  placeholder="Ad"/>
+    <br />
+    <input type="text" class="form-control" id="Surname" placeholder="Soyad" />
+    <br />
+    <input type="text" class="form-control" id="Username" placeholder="Kullanıcı Adı" />
+    <br />
+    <input type="email" class="form-control" id="Mail" placeholder="Mail" />
+    <br />
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#btnGetListAll").click(function () {
+
+                $.ajax({
+                    contentType:"application/json",
+                    url: "/WriterUser/ListUser",
+                    type: "GET",
+                    dataType: "json",
+
+                    success: function (data) {
+                        console.log(data);
+                    },
+
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+
+            });
+
+        });
+    </script>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+

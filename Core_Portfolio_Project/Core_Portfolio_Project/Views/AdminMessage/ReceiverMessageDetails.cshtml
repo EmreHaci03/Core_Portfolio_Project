@@ -1,0 +1,28 @@
+﻿@using EntityLayer.Concrete
+@model WriterMessage
+@{
+    ViewData["Title"] = "ReceiverMessageDetails";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<h1>Gelen Mesaj Detayları</h1>
+<div class="container">
+    <form class="form-group">
+
+        <br />
+        <label>Alıcı</label>
+        @Html.TextBoxFor(x => x.ReceiverName, new { @class = "form-control" })
+
+        <br />
+        <label>Tarih</label>
+        @Html.TextBox("Date", Model.Date.ToShortDateString(), new { @class = "form-control" })
+
+        <br />
+        <label>İçerik</label>
+        @Html.TextAreaFor(x => x.MessageContent, 6, 3, new { @class = "form-control" })
+        <br />
+        <a class="btn btn-primary" href="/AdminMessage/ReceiverMessageList/">Geri Dön</a>
+    </form>
+</div>
+
+

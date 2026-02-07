@@ -1,0 +1,36 @@
+﻿@using EntityLayer.Concrete
+@model SocialMedia
+@{
+    ViewData["Title"] = "EditSocialMedia";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<h1>Sosyal Medya Düzenleme Paneli</h1>
+
+<form class="form-group" method="post">
+
+    <div class="container my-4">
+
+        @Html.HiddenFor(x => x.SocialMediaID)
+
+        @Html.Label("Ad")
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        <br />
+
+        @Html.Label("Url")
+        @Html.TextBoxFor(x => x.Url, new { @class = "form-control" })
+        <br />
+
+        @Html.Label("İkon")
+        @Html.TextBoxFor(x => x.Icon, new { @class = "form-control" })
+        <br />
+
+        @Html.Label("Durum")
+        @Html.TextBoxFor(x => x.Status, new { @class = "form-control" })
+        <br />
+
+
+        <button type="submit" class="btn btn-success">Güncelle</button>
+    </div>
+</form>
+

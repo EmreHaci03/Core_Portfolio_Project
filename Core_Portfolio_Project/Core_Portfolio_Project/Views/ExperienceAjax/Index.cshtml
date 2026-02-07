@@ -1,0 +1,205 @@
+﻿@using EntityLayer.Concrete
+@model List<Experience>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+
+<div class="col-md-6">
+    <div class="p-2">
+        <button type="button" id="btnGetListAll" class="btn btn-outline-success">Verileri Getir</button>
+        <button type="button" id="btnAddExperience" class="btn btn-outline-info">Kaydet</button>
+        <button type="button" id="btnGetById" class="btn btn-outline-light">ID İle Getir</button>
+        <button type="button" id="btnDeleteExperience" class="btn btn-outline-warning">Sil</button>
+        <button type="button" id="btnUpdateExperience" class="btn btn-outline-light">Güncelle</button>
+    </div>
+</div>
+<div class="p-2">
+    <table class="table table-bordered" id="tblExperience">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Firma</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="col-md-12">
+    <input type="text" class="form-control" id="Name" placeholder="Ad" />
+    <br />
+    <input type="email" class="form-control" id="Date" placeholder="Tarih" />
+</div>
+
+<br />
+<div class="col-md-12">
+    <h4>ID'Ye Göre Getirme Paneli</h4>
+    <input type="text" class="form-control" id="getbyid" placeholder="ID Giriniz" />
+</div>
+<br />
+<div class="col-md-12">
+    <h4>Silme  Paneli</h4>
+    <input type="text" class="form-control" id="Deleteid" placeholder="ID Giriniz" />
+</div>
+<br />
+@* <div class="col-md-12">
+    <h4>Güncelleme  Paneli</h4>
+    <input type="text" class="form-control" id="Updateid" placeholder="ID Giriniz" />
+    <br />
+    <input  type="text" class="form-control" id="Name" placeholder="Ad" />
+    <br />
+    <input type="text" class="form-control" id="Date" placeholder="Tarih" />
+    <br />
+
+</div> *@
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // Listele
+            $("#btnGetListAll").click(function () {
+                getList();
+            });
+
+            
+            $("#btnAddExperience").click(function () {
+                let experience = {
+                    Name: $("#Name").val(),
+                    Date: $("#Date").val()
+                };
+
+                $.ajax({
+                    url: "/ExperienceAjax/AddExperience/",
+                    type: "POST",
+                    data: experience,
+                    success: function (data) {
+                        alert("Kayıt Eklendi");
+
+                        $("#Name").val("");
+                        $("#Date").val("");
+
+                        getList();
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+            
+            $("#btnGetById").click(function () {
+                let id = $("#getbyid").val();
+
+                $.ajax({
+                    url: "/ExperienceAjax/GetExperienceById/",
+                    type: "GET",
+                    data: { id:id },
+                    success: function (data) {
+                        if (!data) {
+                            alert("Kayıt bulunamadı");
+                            return;
+                        }
+
+                        console.log(data);
+
+                        $("#Name").val(data.name);
+                        $("#Date").val(data.date);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+            $("#btnDeleteExperience").click(function () {
+            let id = $("#Deleteid").val();
+
+            if (!id) {
+                alert("Silmek İçin ID Girin");
+                return;
+            }
+
+            $.ajax({
+                url: "/ExperienceAjax/DeleteExperience/",
+                type: "POST",
+                data: { id: id },
+                success: function (data) {
+                    getList();  // tabloyu güncelle
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+
+        //     $("#btnUpdateExperience").click(function() {
+        //     let experience = {
+        //         ExperienceID: $("#Updateid").val(),  
+        //         Name: $("#Name").val(),
+        //         Date: $("#Date").val()
+        //     };
+
+        //     if (!experience.ExperienceID) {
+        //         alert("Güncellemek için ID Girin");
+        //         return;
+        //     }
+
+        //     $.ajax({
+        //         url: "/ExperienceAjax/UpdateExperience/",
+        //         type: "POST",
+        //         data: experience, 
+        //         success: function(data) {
+        //             if (!data) {
+        //                 alert("Güncelleme Başarısız");
+        //                 return;
+        //             }
+        //             alert("Kayıt Güncellendi");
+        //             getList();
+        //         },
+        //         error: function(err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // });
+
+            // Liste Fonksiyonu
+            function getList() {
+                $.ajax({
+                    url: "/ExperienceAjax/ListExperience/",
+                    type: "GET",
+                    contentType:"application/json",
+                     datatype:"json",
+                    success: function (data) {
+                        let tbody = $("#tblExperience tbody");
+                        tbody.empty();
+
+                        $.each(data, function (index, item) {
+                            tbody.append(`
+                                <tr>
+                                    <td>${item.experienceID}</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.date}</td>
+                                </tr>
+                            `);
+                        });
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+        }); 
+    </script>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+
+

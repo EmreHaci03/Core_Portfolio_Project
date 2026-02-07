@@ -1,0 +1,23 @@
+﻿@using EntityLayer.Concrete
+@model SocialMedia
+@{
+    ViewData["Title"] = "AddSocialMedia";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<h4>Sosyal Medya Ekleme Paneli</h4>
+<div class="container mt-4">
+    <form class="form-group" method="post">
+        <label>Ad</label>
+        <input type="text" name="Name" class="form-control" />
+        <br />
+        <label>Link</label>
+        <input type="text" name="Url" class="form-control" />
+        <br />
+        <label>İkon</label>
+        <input type="text" name="Icon" class="form-control" />
+        <br />
+        <button class="btn btn-primary">Ekle</button>
+    </form>
+</div>
+

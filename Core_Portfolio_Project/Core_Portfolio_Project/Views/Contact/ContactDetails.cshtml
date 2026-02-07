@@ -1,0 +1,30 @@
+﻿@using EntityLayer.Concrete
+@model Message
+@{
+    ViewData["Title"] = "ContactDetails";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<h1>Mesaj Detayları</h1>
+<div class="container">
+    <form class="form-group">
+
+        <br />
+        <label>Başlık</label>
+        @Html.TextBoxFor(x => x.SenderName, new { @class = "form-control"} )
+
+        <br />
+        <label>Tarih</label>
+        @Html.TextBoxFor(x => x.SenderMail, new { @class = "form-control" })
+
+        <br />
+        <label>Durum</label>
+        @Html.TextBox("Date", Model.Date.ToShortDateString(), new { @class = "form-control" })
+
+        <br />
+        <label>İçerik</label>
+        @Html.TextAreaFor(x => x.Content, 6, 3, new { @class = "form-control" })
+        <br />
+        <a class="btn btn-primary" href="/Contact/Index/">Geri Dön</a>
+    </form>
+</div>

@@ -1,0 +1,30 @@
+﻿@using EntityLayer.Concrete
+@model Announcement
+@{
+    ViewData["Title"] = "AnnouncemenetDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Duyuru Detayları</h1>
+<div class="container">
+<form class="form-group">
+
+    <br />
+    @Html.Label("Başlık")
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @readonly = "readonly" })
+
+    <br />
+    @Html.Label("Tarih")
+        @Html.TextBoxFor(x => x.Date, new { @class = "form-control", @readonly = "readonly" })
+
+    <br />
+    @Html.Label("Durum")
+        @Html.TextBoxFor(x => x.Status, new { @class = "form-control", @readonly = "readonly" })
+
+    <br />
+    @Html.Label("İçerik")
+        @Html.TextBoxFor(x => x.Content, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <a class="btn btn-primary" href="/Writer/WriterDashboard/Index/">Geri Dön</a>
+</form>
+</div>

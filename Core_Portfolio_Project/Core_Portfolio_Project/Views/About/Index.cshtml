@@ -1,0 +1,67 @@
+﻿@model EntityLayer.Concrete.About
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Index", "About", FormMethod.Post))
+{
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description"> Hakkımda Düzenleme Paneli </p>
+
+                @Html.HiddenFor(x => x.AboutID)
+
+                <div class="form-group">
+                    <label>Başlık</label>
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Yaş</label>
+                    @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Age, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Mail</label>
+                    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Telefon</label>
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Adres</label>
+                    @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Adress, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Resim Url</label>
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ImageUrl, "", new { @class = "text-danger" })
+                </div>
+
+
+                <button type="submit" class="btn btn-primary mr-2">Güncelle</button>
+                <a href="@Url.Action("Index", "About")" class="btn btn-dark">İptal</a>
+            </div>
+        </div>
+    </div>
+}
+
+

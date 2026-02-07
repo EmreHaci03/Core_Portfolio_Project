@@ -1,0 +1,37 @@
+﻿@using EntityLayer.Concrete
+@model WriterMessage
+
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Mesaj Detayları</h1>
+<div class="container">
+    <form class="form-group">
+        @Html.HiddenFor(x => x.WriterMessageID)
+
+        <br />
+        @Html.Label("Gönderen Adı")
+        @Html.TextBoxFor(x => x.SenderName, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+
+        @Html.Label("Gönderen Mail")
+        @Html.TextBoxFor(x => x.Sender, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+
+        @Html.Label("Alıcı Adı")
+        @Html.TextBoxFor(x => x.ReceiverName, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+
+        @Html.Label("Alıcı Mail")
+        @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+
+        @Html.Label("Mesaj")
+        @Html.TextAreaFor(x => x.MessageContent, 10, 3, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+
+        <a class="btn btn-primary" href="/Writer/WriterDashboard/Index/">Geri Dön</a>
+    </form>
+</div>

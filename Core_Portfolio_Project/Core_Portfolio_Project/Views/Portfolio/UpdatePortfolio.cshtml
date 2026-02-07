@@ -1,0 +1,57 @@
+﻿@using EntityLayer.Concrete
+@model Portfolio
+@{
+    ViewData["Title"] = "UpdatePortfolio";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("UpdatePortfolio", "Portfolio", FormMethod.Post))
+{
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description"> Portfolio Düzenleme Paneli </p>
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label>ID</label>
+                        @Html.TextBoxFor(x => x.PortfolioID, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Başlık</label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Name,"",new { @class = "text-danger"})
+                    </div>
+                    <div class="form-group">
+                        <label>Resim 1</label>
+                        @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.ImageUrl, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Resim 2</label>
+                        @Html.TextBoxFor(x => x.ImageUrl2, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.ImageUrl2, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Proje Linki</label>
+                        @Html.TextBoxFor(x =>x.ProjectUrl, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.ProjectUrl,"",new { @class = "text-danger"})
+                    </div>
+                    <div class="form-group">
+                        <label>Fiyat</label>
+                        @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Price,"",new { @class = "text-danger"})
+                    </div>
+                    <div class="form-group">
+                        <label>Tamamlanma Oranı</label>
+                        @Html.TextBoxFor(x => x.Value, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Value, "", new { @class = "text-danger" })
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Güncelle</button>
+                    <a asp-controller="Portfolio" asp-action="Index" class="btn btn-dark">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+

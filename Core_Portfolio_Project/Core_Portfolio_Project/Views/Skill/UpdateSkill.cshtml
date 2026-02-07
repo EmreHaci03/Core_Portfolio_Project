@@ -1,0 +1,25 @@
+﻿@using EntityLayer.Concrete
+@model Skill
+@{
+    ViewData["Title"] = "UpdateSkill";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+    <div class="container my-4">
+
+        @Html.HiddenFor(x=>x.SkillID)
+
+        @Html.Label("Başlık")
+        @Html.TextBoxFor(x=>x.Title, new{@class="form-control"})
+        <br />
+
+        @Html.Label("Oran")
+        @Html.TextBoxFor(x => x.Value, new { @class = "form-control" })
+        <br />
+
+        <button type="submit" class="btn btn-success">Güncelle</button>
+    </div>
+</form>
+
